@@ -35,6 +35,11 @@ With $19.35 in account ($14.25 + $5.10):
 - Lose only $9.15 as planned
 - Keep remaining balance
 
+## Bottom Line:
+The calculator is telling you:
+"If you want your 1% stop loss to actually work, you need $19.35 in your account, not just $14.25"
+Current setup = Your stop loss won't save you. Exchange liquidates you first!
+
 ## Updated Brief: Futures Leverage Calculator App https://crypto-future-leverage-calculator.vercel.app/
 
 ---
