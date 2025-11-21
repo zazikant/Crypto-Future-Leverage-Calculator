@@ -59,8 +59,8 @@ export function calculateFutures(inputs: CalculatorInputs): CalculationResults {
 
   // 13. Balance needed to reach SL without liquidation
   const balanceNeededForSL = isLiquidationBeforeSL 
-    ? (Math.abs(entryPrice - liqPrice) * positionUnits) + fees
-    : minBalance;
+    ? Math.abs(slPrice - liqPrice) * positionUnits
+    : 0;
 
   return {
     positionUnits,

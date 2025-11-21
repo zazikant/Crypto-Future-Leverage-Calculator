@@ -311,7 +311,7 @@ export default function FuturesCalculator() {
                     </div>
 
                     {/* Warning Alert */}
-                    {results.isLiquidationBeforeSL && (
+                    {results.balanceNeededForSL > 0 && (
                       <Alert className="bg-red-500/10 border-red-500/20 mb-6">
                         <AlertTriangle className="h-4 w-4 text-red-500" />
                         <AlertDescription className="text-red-500">
@@ -320,7 +320,7 @@ export default function FuturesCalculator() {
                             Liquidation will occur at {formatCurrency(results.liqPrice)} before your SL at {formatCurrency(results.slPrice)}
                           </div>
                           <div className="text-sm mt-1">
-                            You need {formatCurrency(results.balanceNeededForSL)} in account to reach your SL without liquidation
+                            You need an extra {formatCurrency(results.balanceNeededForSL)} in your account to reach your SL without liquidation
                           </div>
                         </AlertDescription>
                       </Alert>
