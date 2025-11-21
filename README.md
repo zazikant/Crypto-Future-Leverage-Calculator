@@ -3,6 +3,38 @@ Rules:
 A) copy the trading fees from delta exchange fees calculator. Total Profit and loss are shown in App. The actuall profit is minus this tax and total loss is with plus this tax
 B) Adjust stop loss to 1.2% in case of volatility
 
+
+Minimum Account Balance
+$14.25
+
+⚠️ Warning: Liquidation Risk!
+Liquidation will occur at $91949.46 before your SL at $92406.92
+You need $5.10 in account to reach your SL without liquidation
+
+
+The Solution: "You need $5.10 in account"
+If you have $14.25 + $5.10 = $19.35 total:
+Now liquidation moves past your SL:
+
+- New liquidation price: ~$92,500 (beyond your SL)
+- Your SL at $92,407 triggers FIRST ✅
+- You lose only $9.15 (controlled loss)
+- You keep ~$10 in your account
+
+
+Summary in Simple Terms:
+With $14.25 in account:
+
+- You get kicked out early at $91,949
+- Lose entire $14.25
+- Your 1% stop loss is useless
+
+With $19.35 in account ($14.25 + $5.10):
+
+- Your stop loss at $92,407 works properly
+- Lose only $9.15 as planned
+- Keep remaining balance
+
 ## Updated Brief: Futures Leverage Calculator App https://crypto-future-leverage-calculator.vercel.app/
 
 ---
