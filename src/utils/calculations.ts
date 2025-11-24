@@ -4,6 +4,7 @@ export function calculateFutures(inputs: CalculatorInputs): CalculationResults {
   const {
     positionType,
     leverage,
+    maintenanceMargin,
     lotSizeDefinition,
     entryPrice,
     lots,
@@ -22,7 +23,7 @@ export function calculateFutures(inputs: CalculatorInputs): CalculationResults {
   const initialMargin = notionalValue / leverage;
 
   // 4. Liquidation Distance %
-  const liquidationPercent = 100 / leverage;
+  const liquidationPercent = maintenanceMargin;
 
   // 5. TP Price
   const tpPrice = positionType === 'long' 

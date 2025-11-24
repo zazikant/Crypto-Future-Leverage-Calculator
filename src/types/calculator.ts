@@ -1,6 +1,7 @@
 export interface CalculatorInputs {
   positionType: 'long' | 'short';
   leverage: number;
+  maintenanceMargin: number;
   lotSizeDefinition: number; // 1 lot = X units
   entryPrice: number;
   lots: number;

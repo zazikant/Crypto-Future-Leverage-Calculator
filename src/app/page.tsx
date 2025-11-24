@@ -18,6 +18,7 @@ export default function FuturesCalculator() {
   const [inputs, setInputs] = useState<CalculatorInputs>({
     positionType: 'long',
     leverage: 200,
+    maintenanceMargin: 0.5,
     lotSizeDefinition: 0.001,
     entryPrice: 91492,
     lots: 10,
@@ -43,6 +44,9 @@ export default function FuturesCalculator() {
     
     if (inputs.leverage < 1 || inputs.leverage > 200) {
       newErrors.leverage = inputs.leverage;
+    }
+    if (inputs.maintenanceMargin <= 0) {
+      newErrors.maintenanceMargin = inputs.maintenanceMargin;
     }
     if (inputs.lotSizeDefinition <= 0) {
       newErrors.lotSizeDefinition = inputs.lotSizeDefinition;
@@ -84,6 +88,7 @@ export default function FuturesCalculator() {
     setInputs({
       positionType: 'long',
       leverage: 200,
+      maintenanceMargin: 0.5,
       lotSizeDefinition: 0.001,
       entryPrice: 91492,
       lots: 10,
@@ -184,6 +189,23 @@ export default function FuturesCalculator() {
                       Extreme leverage! Consider reducing risk.
                     </AlertDescription>
                   </Alert>
+                )}
+              </div>
+
+              {/* Maintenance Margin */}
+              <div className="space-y-2">
+                <Label htmlFor="maintenanceMargin">Maintenance Margin %</Label>
+                <Input
+                  id="maintenanceMargin"
+                  type="number"
+                  step="0.1"
+                  value={inputs.maintenanceMargin}
+                  onChange={(e) => handleInputChange('maintenanceMargin', e.target.value)}
+                  className={`bg-white border-gray-300 text-gray-900 ${errors.maintenanceMargin ? 'border-red-500' : ''}`}
+                />
+                <p className="text-gray-500 text-xs">Found in contract details on your exchange</p>
+                {errors.maintenanceMargin && (
+                  <p className="text-red-500 text-sm">Maintenance margin must be positive</p>
                 )}
               </div>
 
