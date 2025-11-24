@@ -18,7 +18,7 @@ export default function FuturesCalculator() {
   const [inputs, setInputs] = useState<CalculatorInputs>({
     positionType: 'long',
     leverage: 200,
-    maintenanceMargin: 0.5,
+    maintenanceMargin: 0.25,
     lotSizeDefinition: 0.001,
     entryPrice: 91492,
     lots: 10,
@@ -88,7 +88,7 @@ export default function FuturesCalculator() {
     setInputs({
       positionType: 'long',
       leverage: 200,
-      maintenanceMargin: 0.5,
+      maintenanceMargin: 0.25,
       lotSizeDefinition: 0.001,
       entryPrice: 91492,
       lots: 10,

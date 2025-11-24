@@ -1,141 +1,77 @@
-# 🚀 Welcome to Z.ai Code Scaffold
+# Crypto Futures Leverage Calculator
 
-A modern, production-ready web application scaffold powered by cutting-edge technologies, designed to accelerate your development with [Z.ai](https://chat.z.ai)'s AI-powered coding assistance.
+This is a Next.js application that provides a client-side cryptocurrency futures leverage calculator. It helps traders calculate the minimum balance required to open a leveraged futures position while avoiding immediate liquidation.
 
-## ✨ Technology Stack
+## Features
 
-This scaffold provides a robust foundation built with:
+*   **Long and Short Positions:** Calculate for both long and short positions.
+*   **Leverage and Margin:** Input your desired leverage and the contract's maintenance margin.
+*   **Position Sizing:** Define your position size in lots and the lot size definition.
+*   **Entry, TP, and SL:** Set your entry price, take profit percentage, and stop loss percentage.
+*   **Fee Calculation:** Include trading fees in your calculation.
+*   **Real-time Calculation:** Results are updated in real-time as you type.
+*   **Detailed Results:**
+    *   Minimum account balance required.
+    *   Liquidation price and distance.
+    *   Take profit and stop loss prices.
+    *   Potential profit and loss.
+    *   Notional value of the position.
+    *   Initial margin required.
+*   **Risk Assessment:**
+    *   Risk level indicator based on leverage.
+    *   Warning when the stop loss is beyond the liquidation price.
+*   **Reset Functionality:** Easily reset all inputs to their default values.
+*   **Copy to Clipboard:** Conveniently copy the calculated minimum balance.
 
-### 🎯 Core Framework
-- **⚡ Next.js 15** - The React framework for production with App Router
-- **📘 TypeScript 5** - Type-safe JavaScript for better developer experience
-- **🎨 Tailwind CSS 4** - Utility-first CSS framework for rapid UI development
+## Technologies Used
 
-### 🧩 UI Components & Styling
-- **🧩 shadcn/ui** - High-quality, accessible components built on Radix UI
-- **🎯 Lucide React** - Beautiful & consistent icon library
-- **🌈 Framer Motion** - Production-ready motion library for React
-- **🎨 Next Themes** - Perfect dark mode in 2 lines of code
+*   **Framework:** [Next.js](https://nextjs.org/)
+*   **Language:** [TypeScript](https://www.typescriptlang.org/)
+*   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+*   **UI Components:** [shadcn/ui](https://ui.shadcn.com/)
+*   **State Management:** [React Hooks](https://reactjs.org/docs/hooks-intro.html) (`useState`, `useEffect`)
+*   **Icons:** [Lucide React](https://lucide.dev/guide/packages/lucide-react)
 
-### 📋 Forms & Validation
-- **🎣 React Hook Form** - Performant forms with easy validation
-- **✅ Zod** - TypeScript-first schema validation
+## Getting Started
 
-### 🔄 State Management & Data Fetching
-- **🐻 Zustand** - Simple, scalable state management
-- **🔄 TanStack Query** - Powerful data synchronization for React
-- **🌐 Axios** - Promise-based HTTP client
+### Prerequisites
 
-### 🗄️ Database & Backend
-- **🗄️ Prisma** - Next-generation Node.js and TypeScript ORM
-- **🔐 NextAuth.js** - Complete open-source authentication solution
+*   [Node.js](https://nodejs.org/) (version 20 or later)
+*   [npm](https://www.npmjs.com/) or [yarn](httpshttps://yarnpkg.com/)
 
-### 🎨 Advanced UI Features
-- **📊 TanStack Table** - Headless UI for building tables and datagrids
-- **🖱️ DND Kit** - Modern drag and drop toolkit for React
-- **📊 Recharts** - Redefined chart library built with React and D3
-- **🖼️ Sharp** - High performance image processing
+### Installation
 
-### 🌍 Internationalization & Utilities
-- **🌍 Next Intl** - Internationalization library for Next.js
-- **📅 Date-fns** - Modern JavaScript date utility library
-- **🪝 ReactUse** - Collection of essential React hooks for modern development
+1.  Clone the repository:
+    ```bash
+    git clone https://github.com/zazikant/Crypto-Future-Leverage-Calculator.git
+    cd crypto-leverage-calculator-new
+    ```
 
-## 🎯 Why This Scaffold?
+2.  Install the dependencies:
+    ```bash
+    npm install
+    ```
 
-- **🏎️ Fast Development** - Pre-configured tooling and best practices
-- **🎨 Beautiful UI** - Complete shadcn/ui component library with advanced interactions
-- **🔒 Type Safety** - Full TypeScript configuration with Zod validation
-- **📱 Responsive** - Mobile-first design principles with smooth animations
-- **🗄️ Database Ready** - Prisma ORM configured for rapid backend development
-- **🔐 Auth Included** - NextAuth.js for secure authentication flows
-- **📊 Data Visualization** - Charts, tables, and drag-and-drop functionality
-- **🌍 i18n Ready** - Multi-language support with Next Intl
-- **🚀 Production Ready** - Optimized build and deployment settings
-- **🤖 AI-Friendly** - Structured codebase perfect for AI assistance
+### Running the Application
 
-## 🚀 Quick Start
+To run the development server:
 
 ```bash
-# Install dependencies
-npm install
-
-# Start development server
 npm run dev
-
-# Build for production
-npm run build
-
-# Start production server
-npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see your application running.
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the calculator.
 
-## 🤖 Powered by Z.ai
+## How to Use
 
-This scaffold is optimized for use with [Z.ai](https://chat.z.ai) - your AI assistant for:
+1.  **Position Type:** Select whether you are opening a "Long" or "Short" position.
+2.  **Leverage:** Enter the leverage multiplier you intend to use (e.g., 50 for 50x).
+3.  **Maintenance Margin %:** Find this value in the contract details on your exchange. It's the margin percentage at which your position gets liquidated.
+4.  **1 Lot = ? Units:** Define how many units of the asset are in one lot (e.g., for BTC, 1 lot might be 0.001 units).
+5.  **Entry Price ($):** The price at which you plan to open your position.
+6.  **Quantity (lots):** The number of lots you want to trade.
+7.  **Take Profit %:** The percentage gain at which you want to close your position.
+8.  **Stop Loss %:** The percentage loss at which you want to close your position.
+9.  **Trading Fees ($):** The estimated total fees for opening and closing the position.
 
-- **💻 Code Generation** - Generate components, pages, and features instantly
-- **🎨 UI Development** - Create beautiful interfaces with AI assistance  
-- **🔧 Bug Fixing** - Identify and resolve issues with intelligent suggestions
-- **📝 Documentation** - Auto-generate comprehensive documentation
-- **🚀 Optimization** - Performance improvements and best practices
-
-Ready to build something amazing? Start chatting with Z.ai at [chat.z.ai](https://chat.z.ai) and experience the future of AI-powered development!
-
-## 📁 Project Structure
-
-```
-src/
-├── app/                 # Next.js App Router pages
-├── components/          # Reusable React components
-│   └── ui/             # shadcn/ui components
-├── hooks/              # Custom React hooks
-└── lib/                # Utility functions and configurations
-```
-
-## 🎨 Available Features & Components
-
-This scaffold includes a comprehensive set of modern web development tools:
-
-### 🧩 UI Components (shadcn/ui)
-- **Layout**: Card, Separator, Aspect Ratio, Resizable Panels
-- **Forms**: Input, Textarea, Select, Checkbox, Radio Group, Switch
-- **Feedback**: Alert, Toast (Sonner), Progress, Skeleton
-- **Navigation**: Breadcrumb, Menubar, Navigation Menu, Pagination
-- **Overlay**: Dialog, Sheet, Popover, Tooltip, Hover Card
-- **Data Display**: Badge, Avatar, Calendar
-
-### 📊 Advanced Data Features
-- **Tables**: Powerful data tables with sorting, filtering, pagination (TanStack Table)
-- **Charts**: Beautiful visualizations with Recharts
-- **Forms**: Type-safe forms with React Hook Form + Zod validation
-
-### 🎨 Interactive Features
-- **Animations**: Smooth micro-interactions with Framer Motion
-- **Drag & Drop**: Modern drag-and-drop functionality with DND Kit
-- **Theme Switching**: Built-in dark/light mode support
-
-### 🔐 Backend Integration
-- **Authentication**: Ready-to-use auth flows with NextAuth.js
-- **Database**: Type-safe database operations with Prisma
-- **API Client**: HTTP requests with Axios + TanStack Query
-- **State Management**: Simple and scalable with Zustand
-
-### 🌍 Production Features
-- **Internationalization**: Multi-language support with Next Intl
-- **Image Optimization**: Automatic image processing with Sharp
-- **Type Safety**: End-to-end TypeScript with Zod validation
-- **Essential Hooks**: 100+ useful React hooks with ReactUse for common patterns
-
-## 🤝 Get Started with Z.ai
-
-1. **Clone this scaffold** to jumpstart your project
-2. **Visit [chat.z.ai](https://chat.z.ai)** to access your AI coding assistant
-3. **Start building** with intelligent code generation and assistance
-4. **Deploy with confidence** using the production-ready setup
-
----
-
-Built with ❤️ for the developer community. Supercharged by [Z.ai](https://chat.z.ai) 🚀
+The "Calculation Results" section will update automatically, providing you with all the critical information for your trade.
