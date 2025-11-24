@@ -1,3 +1,17 @@
+
+Minimum Account Balance
+$13.20
+
+⚠️ Warning: Liquidation Risk!
+Liquidation will occur at $86866.63 before your SL at $87516.50
+You need an extra $6.50 in your account to reach your SL without liquidation
+
+
+Meaning of above text is that you will need 13.2 + 6.5 dollars for holding the desired % SL. Below this amount balance, account will get liquated without SL hitting.
+
+============
+
+
 # Crypto Futures Leverage Calculator
 
 This is a Next.js application that provides a client-side cryptocurrency futures leverage calculator. It helps traders calculate the minimum balance required to open a leveraged futures position while avoiding immediate liquidation.
