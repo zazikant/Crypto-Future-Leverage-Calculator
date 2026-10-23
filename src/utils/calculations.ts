@@ -112,7 +112,29 @@ export function getRiskBadgeProps(riskLevel: RiskLevel) {
 }
 
 export function formatCurrency(amount: number, decimals: number = 2): string {
-  return `$${amount.toFixed(decimals)}`;
+  const sign = amount < 0 ? '-' : '';
+  const abs = Math.abs(amount);
+  let d = decimals;
+  // Adaptive precision for sub-$1 values so small prices are not rounded away
+  // (e.g. $0.0027 instead of $0.00)
+  if (abs > 0 && abs < 1) {
+    if (abs >= 0.01) {
+      d = Math.max(decimals, 4);
+    } else if (abs >= 0.0001) {
+      d = Math.max(decimals, 6);
+    } else {
+      d = Math.max(decimals, 8);
+    }
+  }
+  let str = abs.toFixed(d);
+  // Strip trailing zeros beyond the standard decimals for clean output
+  if (d > decimals) {
+    str = str.replace(/(\.\d{2}\d*?)0+$/, '$1');
+    if (str.endsWith('.')) {
+      str = str.slice(0, -1);
+    }
+  }
+  return `${sign}$${str}`;
 }
 
 export function formatNumber(amount: number, decimals: number = 4): string {

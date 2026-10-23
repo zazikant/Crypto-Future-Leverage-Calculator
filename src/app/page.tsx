@@ -490,9 +490,9 @@ export default function FuturesCalculator() {
                         <div className="space-y-2 text-sm">
                           <div className="flex justify-between items-center">
                             <span>If TP hits:</span>
-                            <span className="text-green-600 font-semibold">
+                            <span className={`font-semibold ${results.tpProfit >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                               <TrendingUp className="inline h-4 w-4 mr-1" />
-                              +{formatCurrency(results.tpProfit)}
+                              {results.tpProfit >= 0 ? '+' : '-'}{formatCurrency(Math.abs(results.tpProfit))}
                             </span>
                           </div>
                           <div className="flex justify-between items-center">
