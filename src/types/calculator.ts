@@ -4,6 +4,8 @@ export interface CalculatorInputs {
   maintenanceMargin: number;
   lotSizeDefinition: number; // 1 lot = X units
   entryPrice: number;
+  highValue: number; // High price reference
+  lowValue: number; // Low price reference
   lots: number;
   tpPercent: number;
   slPercent: number;

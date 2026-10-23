@@ -21,6 +21,8 @@ export default function FuturesCalculator() {
     maintenanceMargin: 0.25,
     lotSizeDefinition: 0.001,
     entryPrice: 91492,
+    highValue: 91910,
+    lowValue: 91000,
     lots: 10,
     tpPercent: 0.33,
     slPercent: 1.0,
@@ -75,12 +77,27 @@ export default function FuturesCalculator() {
     // For positionType, keep the string value as-is
     if (field === 'positionType') {
       console.log('Position type changed to:', value);
-      setInputs(prev => ({ ...prev, [field]: value }));
+      setInputs(prev => ({ ...prev, positionType: value as CalculatorInputs['positionType'] }));
       return;
     }
     
     // For numeric fields, convert to number
     const numValue = typeof value === 'string' ? (value === '' ? 0 : parseFloat(value) || 0) : value;
+
+    // When High or Low changes, auto-reference SL% to the Hi/Low change %
+    // (user can still override SL% manually with a custom value afterwards)
+    if (field === 'highValue' || field === 'lowValue') {
+      setInputs(prev => {
+        const next = { ...prev, [field]: numValue };
+        if (next.highValue > 0 && next.lowValue > 0) {
+          const hiLowChangePct = Math.abs((next.highValue - next.lowValue) / next.lowValue) * 100;
+          next.slPercent = Math.round(hiLowChangePct * 100) / 100;
+        }
+        return next;
+      });
+      return;
+    }
+
     setInputs(prev => ({ ...prev, [field]: numValue }));
   };
 
@@ -91,12 +108,19 @@ export default function FuturesCalculator() {
       maintenanceMargin: 0.25,
       lotSizeDefinition: 0.001,
       entryPrice: 91492,
+      highValue: 91910,
+      lowValue: 91000,
       lots: 10,
       tpPercent: 0.33,
       slPercent: 1.0,
       fees: 0.53
     });
   };
+
+  // Hi/Low change % referenced by the Stop Loss field
+  const hiLowChangePercent = inputs.highValue > 0 && inputs.lowValue > 0
+    ? Math.abs((inputs.highValue - inputs.lowValue) / inputs.lowValue) * 100
+    : null;
 
   const riskLevel = getRiskLevel(inputs.leverage);
   const riskBadge = getRiskBadgeProps(riskLevel);
@@ -242,6 +266,42 @@ export default function FuturesCalculator() {
                 )}
               </div>
 
+              {/* High / Low Values */}
+              <div className="space-y-2">
+                <Label>High / Low Values ($)</Label>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-1">
+                    <Input
+                      id="highValue"
+                      type="number"
+                      step="0.01"
+                      placeholder="High"
+                      value={inputs.highValue}
+                      onChange={(e) => handleInputChange('highValue', e.target.value)}
+                      className="bg-white border-gray-300 text-gray-900"
+                    />
+                    <p className="text-gray-500 text-xs">High value</p>
+                  </div>
+                  <div className="space-y-1">
+                    <Input
+                      id="lowValue"
+                      type="number"
+                      step="0.01"
+                      placeholder="Low"
+                      value={inputs.lowValue}
+                      onChange={(e) => handleInputChange('lowValue', e.target.value)}
+                      className="bg-white border-gray-300 text-gray-900"
+                    />
+                    <p className="text-gray-500 text-xs">Low value</p>
+                  </div>
+                </div>
+                {hiLowChangePercent !== null && (
+                  <p className="text-blue-600 text-xs font-medium">
+                    Hi/Low change: {formatPercent(hiLowChangePercent)}
+                  </p>
+                )}
+              </div>
+
               {/* Position Size */}
               <div className="space-y-2">
                 <Label htmlFor="lots">Quantity (lots)</Label>
@@ -283,11 +343,16 @@ export default function FuturesCalculator() {
                 <Input
                   id="slPercent"
                   type="number"
-                  step="0.1"
+                  step="0.01"
                   value={inputs.slPercent}
                   onChange={(e) => handleInputChange('slPercent', e.target.value)}
                   className={`bg-white border-gray-300 text-gray-900 ${errors.slPercent ? 'border-red-500' : ''}`}
                 />
+                {hiLowChangePercent !== null && (
+                  <p className="text-gray-500 text-xs">
+                    Auto-referenced to Hi/Low change ({formatPercent(hiLowChangePercent)}) — edit for a custom %
+                  </p>
+                )}
                 {errors.slPercent && (
                   <p className="text-red-500 text-sm">Stop loss must be positive</p>
                 )}
